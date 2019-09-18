@@ -7,7 +7,6 @@ function myName(name) {
 
 function setTeachersNames(teachersName) {
   // change code below this line so that we can set the variable.
-
   //const teachers = null;
   //teachers = teachersName; //  <- this is  invalid because teachers is a const. How can we fix this?
   const teachers = teachersName;
@@ -18,7 +17,10 @@ function setTeachersNames(teachersName) {
 /*** return the sum of both arguments  ***/
 function add(a, b) {
   let sum;
-
+  //Check if the arguments are of type 'number'
+  /*if(typeof a == 'number' && typeof b == 'number'){
+    sum = a + b;
+  }*/
   sum = a + b;
 
   return sum;
@@ -27,12 +29,14 @@ function add(a, b) {
 /*** Using the increment operator, add a year to the argument and make me older */
 function ageMeByAYear(age) {
   age++;
+
   return age;
 }
 
 /*** Using the decrement operator make me age decrement by a year  ***/
 function makeMeYoungerByAYear(age) {
   age--;
+
   return age;
 }
 
@@ -45,6 +49,7 @@ function makeMeYoungerByAYear(age) {
 function convertStringToInt(str) {
   let int;
   int = parseInt(str, 10);
+
   return int;
 }
 
