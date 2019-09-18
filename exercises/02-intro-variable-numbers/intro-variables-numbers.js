@@ -1,6 +1,6 @@
 //set myName variable to your name;
 function myName(name) {
-  let myName = "Roberto";
+  let myName = name;
 
   return myName;
 }
