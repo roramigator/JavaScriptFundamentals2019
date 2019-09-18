@@ -1,6 +1,6 @@
 //set myName variable to your name;
 function myName(name) {
-  let myName = name;
+  let myName = "Roberto";
 
   return myName;
 }
@@ -35,6 +35,11 @@ function makeMeYoungerByAYear(age) {
   age--;
   return age;
 }
+
+/* ********************************************************************** */
+/* ********************************************************************** */
+/* ********************************************************************** */
+/* ********************************************************************** */
 
 /** Take the argument that will be a string and return an integer  */
 function convertStringToInt(str) {
