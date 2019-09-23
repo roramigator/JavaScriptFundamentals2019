@@ -175,6 +175,12 @@ function getLargerNumber(arg1, arg2) {
 function replaceLastName(fullName, newLastName) {
   let newFullName;
 
+  /**
+   * let lastName = getLastWordInPlaceName(fullName);
+   * let newName = fullName.replace(lastName, newLastName);
+   * return newName;
+   */
+
   let words;
   let name;
 
