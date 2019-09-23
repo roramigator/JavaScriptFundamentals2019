@@ -314,23 +314,65 @@ function isEvenOrOdd(isEven) {
  *  *****/
 
 function caseInSwitch(num) {
-  let words = [
-    "ONE",
-    "TWO",
-    "THREE",
-    "FOUR",
-    "FIVE",
-    "SIX",
-    "SEVEN",
-    "EIGHT",
-    "NINE",
-    "PLEASE TRY AGAIN"
-  ];
-  if (num > 0 && num < 10) {
-    return words[num - 1];
-  } else {
-    return words[9];
+  /**
+   * let words = [
+   *  "ONE",
+   *  "TWO",
+   *  "THREE",
+   *  "FOUR",
+   *  "FIVE",
+   *  "SIX",
+   *  "SEVEN",
+   *  "EIGHT",
+   *  "NINE",
+   *  "PLEASE TRY AGAIN"
+   * ];
+   * if (num > 0 && num < 10) {
+   *  return words[num - 1];
+   * } else {
+   *  return words[9];
+   * }
+   */
+  let str = "";
+  switch (num) {
+    case 1:
+      // code block
+      str = "ONE";
+      break;
+    case 2:
+      // code block
+      str = "TWO";
+      break;
+    case 3:
+      str = "THREE";
+      break;
+    case 4:
+      // code block
+      str = "FOUR";
+      break;
+    case 5:
+      // code block
+      str = "FIVE";
+      break;
+    case 6:
+      str = "SIX";
+      break;
+    case 7:
+      // code block
+      str = "SEVEN";
+      break;
+    case 8:
+      // code block
+      str = "EIGHT";
+      break;
+    case 9:
+      str = "NINE";
+      break;
+    default:
+      // code block
+      str = "PLEASE TRY AGAIN";
   }
+  return str;
 }
 
 /***
