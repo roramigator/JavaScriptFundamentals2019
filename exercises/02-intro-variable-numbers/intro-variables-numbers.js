@@ -115,6 +115,12 @@ function getLastCharacter(str) {
 function getLastWordInPlaceName(place) {
   let newPlace;
 
+  /**
+   * let index = place.indexOf(" ");
+   * let lastName = place.substring(index + 1);
+   * return lastName;
+   */
+
   let words;
   let lastWordPos;
 
