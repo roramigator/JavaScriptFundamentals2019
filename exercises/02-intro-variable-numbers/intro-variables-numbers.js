@@ -90,8 +90,8 @@ function stringLength(str) {
 function getLastCharacter(str) {
   let lastCharacter;
 
-  lastCharacter = str.charAt(stringLength(str) - 1);
-
+  //lastCharacter = str.charAt(stringLength(str) - 1);
+  lastCharacter = str[str.length - 1];
   return lastCharacter;
 }
 
