@@ -369,7 +369,6 @@ function caseInSwitch(num) {
       str = "NINE";
       break;
     default:
-      // code block
       str = "PLEASE TRY AGAIN";
   }
   return str;
