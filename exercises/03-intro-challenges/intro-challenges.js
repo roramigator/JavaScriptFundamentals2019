@@ -71,6 +71,7 @@ function getRelativeTime(seconds) {
  * roundToNearestHundredth(14.499); // 14.5
  */
 function roundToNearestHundredth(num) {
+  // let round = num.toFixed(2);
   let round = Math.round(num * 100) / 100;
   return round;
 }
