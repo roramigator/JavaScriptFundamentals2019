@@ -6,6 +6,9 @@
 function createAnArray() {
   let array = ["JavaScript"]; // Do not change this line
   /* Add three more items to the array here */
+  array[array.length] = "1";
+  array[array.length] = "2";
+  array[array.length] = "3";
   return array;
 }
 
@@ -18,6 +21,7 @@ function createAnArray() {
 function accessingAnArray() {
   const cars = ["BMW", "Honda", "Civic"]; // Do not change this line
   // Code here
+  return cars[0];
 }
 
 /***
@@ -33,6 +37,14 @@ function accessingAnArray() {
 
 function addFunctionsIntoArray() {
   // Create and return an array here
+  let add = (a, b) => {
+    return a + b;
+  };
+  let substract = (a, b) => {
+    return a - b;
+  };
+  const functions = [add, substract];
+  return functions;
 }
 
 /**
