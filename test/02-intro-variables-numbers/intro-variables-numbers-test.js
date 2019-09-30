@@ -128,6 +128,7 @@ describe("Intro Variables And Numbers", () => {
     expect(timesFive(5)).to.equal(25);
     expect(timesFive(10)).to.equal(50);
     expect(timesFive(2)).to.equal(10);
+    expect(timesFive()).to.equal(5);
   });
 
   it("should check for null or undefined and if the argument is present will return the argument with it being lowercase", () => {
