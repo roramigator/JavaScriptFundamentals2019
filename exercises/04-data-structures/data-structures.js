@@ -56,7 +56,15 @@ function addFunctionsIntoArray() {
  * highestNumber([-1, -5, -4]) // -1
  *
  **/
-function highestNumber(array) {}
+function highestNumber(array) {
+  let b = array[0];
+  for (let n of array) {
+    if (n > b) {
+      b = n;
+    }
+  }
+  return b;
+}
 
 /**
  * Combine an array by using the spread operator
@@ -67,7 +75,9 @@ function highestNumber(array) {}
  * combineArray(['Japan','China','India'], ['USA','UK']) // ['Japan','China','India','USA','UK']
  **/
 
-function combineArray(array1, array2) {}
+function combineArray(array1, array2) {
+  return [...array1, ...array2];
+}
 
 /**
  * Given an array of objects, where each object has an ID,
@@ -105,7 +115,17 @@ function combineArray(array1, array2) {}
  * // Please note, the loop never iterates over the last item, because we found our object. There is no need to continue looping.
  */
 
-function findAndAbort(arr, id) {}
+function findAndAbort(arr, id) {
+  let object;
+  for (let i of arr) {
+    console.log(i);
+    if (i.id === id) {
+      object = i;
+      break;
+    }
+  }
+  return object;
+}
 
 /**
  * A palindrome is a word, phrase, or sequence that reads the same backward as forward, e.g., madam or racecar.
@@ -116,18 +136,34 @@ function findAndAbort(arr, id) {}
  *
  */
 
-function isPalindrome(str) {}
+// Homework
+function isPalindrome(str) {
+  lStr = str.toLowerCase();
+  let strArray = lStr.split("");
+  let palArr = [];
+  for (let i = strArray.length - 1; i >= 0; i--) {
+    palArr.push(strArray[i]);
+  }
+  let palindrome = palArr.join("");
+  return str === palindrome ? true : false;
+}
 
 /***
  * Use sets to remove duplicate elements from an array
  * @return {array}
  */
 
-function removeDuplicates() {
-  let numbers = [2, 3, 4, 4, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 5, 32, 3, 4, 5]; // You can change this line
-
+function removeDuplicates(numbers) {
+  // You can change this line
+  let uniqueNumbers = new Set(numbers);
+  // double loop, the first one for the value; the second one in context
+  //let uniqueNumbers = [];
+  //for (let i = 0; i < numbers.length; i++) {
+  //  if (numbers[i] === uniqueNumbers[uniqueNumbers - 1]) continue;
+  //  uniqueNumbers.push(numbers[i]);
+  //}
   /** Return the an array of unique values */
-  return;
+  return uniqueNumbers;
 }
 
 /**
