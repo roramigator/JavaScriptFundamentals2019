@@ -157,11 +157,12 @@ function removeDuplicates(numbers) {
   // You can change this line
   let uniqueNumbers = new Set(numbers);
   // double loop, the first one for the value; the second one in context
+  //numbers.sort((a,b) => a - b);
   //let uniqueNumbers = [];
-  //for (let i = 0; i < numbers.length; i++) {
-  //  if (numbers[i] === uniqueNumbers[uniqueNumbers - 1]) continue;
-  //  uniqueNumbers.push(numbers[i]);
-  //}
+  //  for (let i = 0; i < numbers.length; i++) {
+  //    if (numbers[i] === uniqueNumbers[uniqueNumbers.length - 1]) continue;
+  //    uniqueNumbers.push(numbers[i]);
+  //  }
   /** Return the an array of unique values */
   return uniqueNumbers;
 }
