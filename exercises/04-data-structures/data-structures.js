@@ -155,14 +155,8 @@ function isPalindrome(str) {
 
 function removeDuplicates(numbers) {
   // You can change this line
-  let uniqueNumbers = new Set(numbers);
-  // double loop, the first one for the value; the second one in context
-  //numbers.sort((a,b) => a - b);
-  //let uniqueNumbers = [];
-  //  for (let i = 0; i < numbers.length; i++) {
-  //    if (numbers[i] === uniqueNumbers[uniqueNumbers.length - 1]) continue;
-  //    uniqueNumbers.push(numbers[i]);
-  //  }
+  let clean = new Set(numbers);
+  let uniqueNumbers = [...clean];
   /** Return the an array of unique values */
   return uniqueNumbers;
 }
@@ -179,7 +173,7 @@ function accessObject() {
     shoes: "cleats"
   };
   // Only change code below this line
-  return;
+  return clothes.hat;
 }
 
 /**
@@ -196,6 +190,12 @@ function createStudentObject() {
     skills: []
   };
   // Add code here
+  student.firstName = "Roberto";
+  student.lastName = "Morado";
+  student.skills[0] = "HTML";
+  student.skills[1] = "CSS";
+  student.skills[2] = "Javascript";
+
   return student;
 }
 
@@ -206,7 +206,16 @@ function createStudentObject() {
  * @return {object}
  */
 
-function createDogObject() {}
+function createDogObject() {
+  myDog = {
+    name: "Puto",
+    legs: 4,
+    tails: 1,
+    owners: ["Dog", "Roberto", "Morado"]
+  };
+
+  return myDog;
+}
 
 /**
  *  Using Object.keys, return all the properties contained in the object.
@@ -224,7 +233,12 @@ function returnObjectProperties() {
     name: "Rocket"
   };
   // Add code here
+  res = [];
+  for (let properties in dog) {
+    res.push(dog[properties]);
+  }
   // hint you need to return an array
+  return res;
 }
 
 /**
