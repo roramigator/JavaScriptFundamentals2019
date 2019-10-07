@@ -118,7 +118,7 @@ function combineArray(array1, array2) {
 function findAndAbort(arr, id) {
   let object;
   for (let i of arr) {
-    console.log(i);
+    //console.log(i);
     if (i.id === id) {
       object = i;
       break;
@@ -233,10 +233,7 @@ function returnObjectProperties() {
     name: "Rocket"
   };
   // Add code here
-  res = [];
-  for (let properties in dog) {
-    res.push(dog[properties]);
-  }
+  let res = Object.keys(dog);
   // hint you need to return an array
   return res;
 }
