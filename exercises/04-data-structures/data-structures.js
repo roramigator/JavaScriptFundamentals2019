@@ -245,7 +245,18 @@ function returnObjectProperties() {
  * @return {object} obj1 and obj2 combined
  */
 
-function combineObject(obj1, obj2) {}
+function combineObject(obj1, obj2) {
+  let o = {};
+
+  for (let i in obj1) {
+    o[i] = obj1[i];
+  }
+  for (let i in obj2) {
+    o[i] = obj2[i];
+  }
+
+  return o;
+}
 
 /**
  * Find a record with the matching id in a collection of records.
