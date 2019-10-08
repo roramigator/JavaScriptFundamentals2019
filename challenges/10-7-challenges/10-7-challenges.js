@@ -3,14 +3,14 @@
  *
  * @param {string} name  eg 'Eddie Wilard'
  * @param {number} graduationYear eg 2019
- * @param {object} skills eg {1:'Javascript',2:'React',3:'CSS'}
+ * @param {object} skills eg {1:'Javascript',2:'HTML',3:'CSS'}
  * @param {Array} links eg [https://github.com/example/profile, https://linkedin.com/profile]
  * 
  * @returns 
  *  const graduate = {
     name: "Eddie Willard",
     graduationYear: 2019,
-    skills: ["JavaScript", "React", "CSS"],
+    skills: ["JavaScript", "HTML", "CSS"],
     links: {
     github: "https://github.com/example/profile",
     linkedIn: "https://linkedin.com/profile"
@@ -19,7 +19,20 @@
  *  
  */
 
-function createGraduateObject(name, graduationYear, skills, links) {}
+function createGraduateObject(name, graduationYear, skills, links) {
+  let graduate = {};
+
+  graduate.name = name;
+  graduate.graduationYear = graduationYear;
+  graduate.skills = [];
+  graduate.links = { ...links };
+
+  for (let i in skills) {
+    graduate.skills.push(skills[i]);
+  }
+
+  return graduate;
+}
 
 /**
  * Loop through a nested array of people. For each person in the array,
@@ -45,7 +58,28 @@ function createGraduateObject(name, graduationYear, skills, links) {}
  * It should look something like this:
  * @see /challenges/10-7-challenges/people-example.png
  */
-function createCsvString(people) {}
+function createCsvString(people) {
+  // people = [{},{},{}];
+  let str = [];
+  let objectValues = [];
+  let objectKeys = [];
+  for (let object of people) {
+    objectKeys = Object.keys(object);
+    objectKeys = objectKeys.join('","');
+    objectKeys = objectKeys.split(",");
+    objectKeys = '"' + objectKeys + '"';
+  }
+  str.push(objectKeys);
+  for (let object of people) {
+    objectValues = Object.values(object);
+    objectValues = objectValues.join('","');
+    objectValues = objectValues.split(",");
+    objectValues = '"' + objectValues + '"';
+    str.push(objectValues);
+  }
+  str = str.join("\\n");
+  str = str + "\\n";
+}
 
 module.exports = {
   createGraduateObject,
