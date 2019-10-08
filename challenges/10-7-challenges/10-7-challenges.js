@@ -60,16 +60,24 @@ function createGraduateObject(name, graduationYear, skills, links) {
  */
 function createCsvString(people) {
   // people = [{},{},{}];
+  let keys = [];
   let str = [];
+
   let objectValues = [];
   let objectKeys = [];
-  for (let object of people) {
-    objectKeys = Object.keys(object);
-    objectKeys = objectKeys.join('","');
-    objectKeys = objectKeys.split(",");
-    objectKeys = '"' + objectKeys + '"';
+
+  objectKeys = Object.keys(people[0]);
+  for (let i of objectKeys) {
+    i === "dob"
+      ? keys.push(i.toUpperCase())
+      : keys.push(i[0].toUpperCase() + i.slice(1));
   }
-  str.push(objectKeys);
+
+  keys = keys.join('","');
+  keys = keys.split(",");
+  keys = '"' + keys + '"';
+
+  str.push(keys);
   for (let object of people) {
     objectValues = Object.values(object);
     objectValues = objectValues.join('","');
@@ -77,8 +85,11 @@ function createCsvString(people) {
     objectValues = '"' + objectValues + '"';
     str.push(objectValues);
   }
-  str = str.join("\\n");
-  str = str + "\\n";
+
+  str = str.join("\n");
+  str = str + "\n";
+
+  return str;
 }
 
 module.exports = {
