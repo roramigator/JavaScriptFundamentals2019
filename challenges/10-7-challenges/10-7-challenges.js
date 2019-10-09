@@ -77,7 +77,7 @@ function createCsvString(people) {
 
   objectKeys = Object.keys(people[0]);
   for (let i of objectKeys) {
-    i.length === "dob"
+    i === "dob"
       ? keys.push(i.toUpperCase())
       : keys.push(i[0].toUpperCase() + i.slice(1));
   }

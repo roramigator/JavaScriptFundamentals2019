@@ -262,6 +262,7 @@ function combineObject(obj1, obj2) {
  * Find a record with the matching id in a collection of records.
  * If the value is truthy, then swap out one of the records values with a new property.
  * If the original value is an array, it should add the new value to the array.
+ * If the value is blank delete the property.
  * @param {Number} id what record to change
  * @param {String} property what property to replace
  * @param {String} value new value to replace with
@@ -306,12 +307,14 @@ function updateRecords(id, prop, value) {
   };
   // Only change the code after this line
   // Logic Here
+  // updateRecords(2468, "tracks", "Free");
+
   if (collection[id]) {
-    if (collection[id][prop]) {
-      if (Array.isArray(prop)) {
+    if (collection[id][prop] === "tracks") {
+      if (Array.isArray(collection[id][prop])) {
         collection[id][prop].push(value);
       } else {
-        collection[id][prop] = value;
+        collection[id][prop] = [value];
       }
     } else {
       collection[id][prop] = value;
