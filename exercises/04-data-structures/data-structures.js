@@ -306,6 +306,19 @@ function updateRecords(id, prop, value) {
   };
   // Only change the code after this line
   // Logic Here
+  if (collection[id]) {
+    if (collection[id][prop]) {
+      if (Array.isArray(prop)) {
+        collection[id][prop].push(value);
+      } else {
+        collection[id][prop] = value;
+      }
+    } else {
+      collection[id][prop] = value;
+    }
+  }
+
+  return collection;
 }
 
 module.exports = {
