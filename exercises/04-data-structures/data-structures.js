@@ -262,7 +262,15 @@ function combineObject(obj1, obj2) {
  * Find a record with the matching id in a collection of records.
  * If the value is truthy, then swap out one of the records values with a new property.
  * If the original value is an array, it should add the new value to the array.
- * If the value is blank delete the property.
+ *
+ *  If prop is "tracks" but the album doesn't have a "tracks" property,
+ *  create an empty array before adding the new value to the album's corresponding property
+ *
+ *  If prop is "tracks" and value isn't empty (""), push the value
+ *  onto the end of the album's existing tracks array
+ *
+ *  If value is empty (""), delete the given prop property from the album.
+ *
  * @param {Number} id what record to change
  * @param {String} property what property to replace
  * @param {String} value new value to replace with
@@ -270,7 +278,7 @@ function combineObject(obj1, obj2) {
  *  @example
  *  updateRecords(5439, "artist", "ABBA"); // artist should be "ABBA"
  *  updateRecords(5439, "tracks", "Take a Chance on Me"); // tracks should be ["Old Track", "Take a Chance on Me""]
- *  updateRecords(2548, "artist", ""); // artist should not change
+ *  updateRecords(2548, "artist", ""); // artist should not be set
  *  updateRecords(1245, "tracks", "Addicted to Love"); // tracks should be ["Old Track", "Addicted to Love""]
  *  updateRecords(2468, "tracks", "Free"); // tracks should have "1999"as the first element.
  *  updateRecords(2548, "tracks", ""); // tracks should not change
