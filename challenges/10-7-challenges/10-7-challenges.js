@@ -25,10 +25,19 @@ function createGraduateObject(name, graduationYear, skills, links) {
   graduate.name = name;
   graduate.graduationYear = graduationYear;
   graduate.skills = [];
-  graduate.links = { ...links };
+  graduate.links = {};
 
-  for (let i in skills) {
-    graduate.skills.push(skills[i]);
+  val = Object.values(skills);
+  for (let i of val) {
+    i === "Javascript"
+      ? graduate.skills.push("JavaScript")
+      : graduate.skills.push(i);
+  }
+
+  for (let i of links) {
+    let key = i.substring(8, i.indexOf(".", 8));
+    key = key === "linkedin" ? "linkedIn" : key;
+    graduate.links[key] = i;
   }
 
   return graduate;
@@ -68,7 +77,7 @@ function createCsvString(people) {
 
   objectKeys = Object.keys(people[0]);
   for (let i of objectKeys) {
-    i === "dob"
+    i.length < 4
       ? keys.push(i.toUpperCase())
       : keys.push(i[0].toUpperCase() + i.slice(1));
   }
