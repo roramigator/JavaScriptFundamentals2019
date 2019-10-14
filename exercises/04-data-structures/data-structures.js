@@ -318,14 +318,21 @@ function updateRecords(id, prop, value) {
   // updateRecords(2468, "tracks", "Free");
 
   if (collection[id]) {
-    if (collection[id][prop] === "tracks") {
-      if (Array.isArray(collection[id][prop])) {
-        collection[id][prop].push(value);
+    if (value !== "") {
+      if (prop === "tracks") {
+        if (Array.isArray(collection[id][prop])) {
+          collection[id][prop].push(value);
+          console.log("is array");
+        } else if (prop === "tracks" && collection[id][prop] === undefined) {
+          collection[id][prop] = [value];
+          console.log("is not array");
+        }
       } else {
-        collection[id][prop] = [value];
+        collection[id][prop] = value;
+        console.log("is not tracks");
       }
     } else {
-      collection[id][prop] = value;
+      delete collection[id][prop];
     }
   }
 
