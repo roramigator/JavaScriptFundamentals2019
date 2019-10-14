@@ -7,7 +7,12 @@
  *
  */
 
-function objectMaker() {}
+function objectMaker() {
+  const student = {
+    name: "Roberto"
+  };
+  return student;
+}
 
 /**
  *  As a programmer, I would like to be able to call on a function that returns an object that will allow me to
