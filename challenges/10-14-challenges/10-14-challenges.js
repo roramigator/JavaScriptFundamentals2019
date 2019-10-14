@@ -9,6 +9,10 @@
 
 function removeElement(arr) {
   return [...arr.slice(1)];
+  /**
+   * const [, ...newArr] = arr; // create a new  array (newArr) skipping the first value
+   * return newArr;
+   */
 }
 
 /**
