@@ -42,6 +42,7 @@ const changeEmail = (user, newEmail) => {
  * shoppingCart[0].price = 9000000; // This should not change newShoppingCart
  * newItem.price = 10; // This should not change newItem
  */
+
 const addToCart = (shoppingCart, newItem) => {
   const shoppingCartCopy = [...shoppingCart];
   const newItemCopy = { ...newItem };
