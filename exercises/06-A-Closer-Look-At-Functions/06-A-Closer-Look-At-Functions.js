@@ -43,7 +43,17 @@ function objectMaker() {
 function groceryList() {
   let groceryItems = [];
 
-  return {};
+  return {
+    add: item => {
+      groceryItems.push(item);
+    },
+    remove: index => {
+      groceryItems.splice(index, 1);
+    },
+    getList: () => {
+      return groceryItems;
+    }
+  };
 }
 
 /**
@@ -60,6 +70,7 @@ const calculator = () => {
    * Create a private variable called "sum"
    * @var {number}
    */
+  let sum = 0;
   /**
    * Return an object that has two methods:
    *
@@ -71,6 +82,10 @@ const calculator = () => {
    * that should return the value of "sum" above.
    * @returns {number} the value of sum
    */
+  return {
+    set: n => (sum += n),
+    get: () => sum
+  };
 };
 
 /**
@@ -98,7 +113,23 @@ const calculator = () => {
  * guessRound2(1); // "No more guesses. The answer was 0"
  */
 
-const guessingGame = numberOfRounds => {};
+const guessingGame = numberOfRounds => {
+  const answer = Math.round(Math.random() * 10);
+  let guesses;
+
+  return guess => {
+    for (guesses = 0; guesses < numberOfRounds; guesses++) {
+      if (guess === answer) {
+        return "You got it!";
+      } else if (guess > answer) {
+        return "You're too high!";
+      } else if (guess < answer) {
+        return "You're too low!";
+      }
+    }
+    return "No more guesses. The answer was " + answer;
+  };
+};
 
 /** CLOSURES END */
 
@@ -121,7 +152,12 @@ const guessingGame = numberOfRounds => {};
  * @param {number} a
  * @param {number} b
  */
-const multiplier = (a, b) => {};
+const multiplier = (a, b) => {
+  if (b === undefined) {
+    return b => a * b;
+  }
+  return a * b;
+};
 
 /** Currying End */
 
