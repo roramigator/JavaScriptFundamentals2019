@@ -8,6 +8,8 @@ const {
   printNames,
   multiplier,
   map,
+  forEach,
+  showFirstAndLast,
   doubleValues,
   filter,
   deleteUser,
@@ -27,15 +29,15 @@ describe("Functions", () => {
     const obj = objectMaker();
     expect(Object.keys(obj)[0]).to.equal("name");
   });
+});
 
+describe("groceryList", () => {
   it("should return a list of items when calling on get getList is called", () => {
     const groceryListObj = groceryList();
     groceryListObj.add("pears");
     expect(groceryListObj.getList().length).to.equal(1);
   });
-});
 
-describe("groceryList", () => {
   it("should add an item to the grocery list when the method add is called", () => {
     const groceryListObj = groceryList();
     groceryListObj.add("pears");
@@ -50,7 +52,6 @@ describe("groceryList", () => {
     groceryListObj.add("orange");
     groceryListObj.add("apples");
     groceryListObj.remove(2);
-    console.log(groceryListObj.getList());
     expect(groceryListObj.getList().length).to.equal(2);
   });
 });
@@ -152,6 +153,26 @@ describe("Callbacks", () => {
     const callback = sinon.spy();
     printNames(["test", "test1", "test3"], callback);
     expect(callback.calledThrice).to.equal(true);
+  });
+});
+
+describe("forEach", () => {
+  it("tests forEach", () => {
+    let numbersDoubled = [];
+    let suppliedArr = [];
+    let arrIndex = [];
+    forEach([1, 2, 3], (number, idx, arr) => {
+      arrIndex.push(idx);
+      numbersDoubled.push(number * 2);
+      suppliedArr = arr;
+    });
+    expect(arrIndex).to.be.equalTo([0, 1, 2]);
+    expect(suppliedArr).to.be.equalTo([1, 2, 3]);
+    expect(numbersDoubled).to.be.equalTo([2, 4, 6]);
+  });
+  it("showFirstAndLast should print only the first and last letter of a string", () => {
+    const abbreviatedName = showFirstAndLast(["colt", "matt", "tim", "udemy"]);
+    expect(abbreviatedName).to.be.equalTo(["ct", "mt", "tm", "uy"]);
   });
 });
 
