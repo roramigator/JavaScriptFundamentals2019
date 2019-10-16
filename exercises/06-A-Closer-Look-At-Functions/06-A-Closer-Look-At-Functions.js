@@ -115,19 +115,24 @@ const calculator = () => {
 
 const guessingGame = numberOfRounds => {
   const answer = Math.round(Math.random() * 10);
-  let guesses;
+  //let guesses;
 
   return guess => {
-    for (guesses = 0; guesses < numberOfRounds; guesses++) {
+    str = "";
+    for (let guesses = 0; guesses < numberOfRounds; guesses++) {
       if (guess === answer) {
         return "You got it!";
       } else if (guess > answer) {
-        return "You're too high!";
+        str = "You're too high!";
       } else if (guess < answer) {
-        return "You're too low!";
+        str = "You're too low!";
+      }
+      if (guesses === numberOfRounds - 1) {
+        return "No more guesses. The answer was " + answer;
+      } else {
+        return str;
       }
     }
-    return "No more guesses. The answer was " + answer;
   };
 };
 
