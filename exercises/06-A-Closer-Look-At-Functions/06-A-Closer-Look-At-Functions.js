@@ -179,7 +179,9 @@ const multiplier = (a, b) => {
  *  - Eddy
  * @param {string} name instuctor name
  */
-const printer = () => {};
+const printer = name => {
+  console.log("I ☠ " + name);
+};
 
 /**
  * Loops through the array of strings
@@ -187,7 +189,11 @@ const printer = () => {};
  * @param {array}
  * @param {function} callback printer function
  */
-const printNames = () => {};
+const printNames = (arr, callback) => {
+  for (let i = 0; i < arr.length; i++) {
+    callback(arr[i]);
+  }
+};
 
 /*** callback ends */
 
@@ -207,7 +213,13 @@ const map = (arr, callback) => {};
  * @param {array} arr an array of numbers e.g. [1, 3, 5]
  * @returns {array} new array, with each value doubled e.g. [2, 5, 10]
  */
-const doubleValues = arr => {};
+const doubleValues = arr => {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push(arr[i] * 2);
+  }
+  return newArr;
+};
 
 /**
  * Given an array nested with objects
