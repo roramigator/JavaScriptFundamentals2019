@@ -207,7 +207,13 @@ const printNames = (arr, callback) => {
  * @param {array} arr
  * @param {function} callback
  */
-const forEach = (arr, callback) => {};
+const forEach = (arr, callback) => {
+  //arr.forEach(callback);
+
+  for (let i = 0; i < arr.length; i++) {
+    callback(arr[i], i, arr);
+  }
+};
 
 /**
  * Given an array of strings, remove all letters of each value except the first and last character in the strings
@@ -217,7 +223,13 @@ const forEach = (arr, callback) => {};
  *   showFirstAndLast(['colt','matt', 'tim', 'udemy']); // ["ct", "mt", "tm", "uy"]
  *   showFirstAndLast(['hi', 'goodbye', 'smile']) // ['hi', 'ge', 'se']
  */
-const showFirstAndLast = arr => {};
+const showFirstAndLast = arr => {
+  let newArr = [];
+  forEach(arr, word => {
+    newArr.push(word[0] + word[word.length - 1]);
+  });
+  return newArr;
+};
 
 /***ForEach ends */
 
@@ -228,7 +240,13 @@ const showFirstAndLast = arr => {};
  * @param {function} callback
  * @returns {array} new array
  */
-const map = (arr, callback) => {};
+const map = (arr, callback) => {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push(callback(arr[i], i, arr));
+  }
+  return newArr;
+};
 
 /**
  * Multiplies each value in an array by two
