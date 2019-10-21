@@ -279,7 +279,12 @@ const doubleValues = arr => {
  * ];
  * extractKey(arrayOfNames, 'name'); // ['Ellie', 'Tim', 'Matt', 'Colt']
  */
-const extractKey = (arr, key) => {};
+const extractKey = (arr, key) => {
+  let newArr = arr.map(obj => {
+    return obj[key];
+  });
+  return newArr;
+};
 
 /**
  * Build your own filter function
