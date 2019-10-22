@@ -333,11 +333,12 @@ const deleteUser = (arr, id) => {
  * @returns {mixed} a single value in the array
  */
 const find = (arr, callback) => {
-  for (let i = 0; i < arr.length; i++) {
+  /* for (let i = 0; i < arr.length; i++) {
     if (callback(arr[i], i, arr)) {
       return arr[i];
     }
   }
+  */
 };
 
 /**
@@ -359,11 +360,7 @@ const find = (arr, callback) => {
  * findUser(users, 1025);
  * // { id: 1025, username:"newyorkfarmer", email: "johndoe@example.com" }
  */
-const findUser = (arr, id) => {
-  return filter(arr, obj => {
-    return obj.id === id;
-  });
-};
+const findUser = (arr, id) => {};
 
 /**
  * Given an array of numbers, return the sum
