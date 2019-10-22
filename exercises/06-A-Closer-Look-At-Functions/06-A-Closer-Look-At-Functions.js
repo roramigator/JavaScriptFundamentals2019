@@ -254,10 +254,7 @@ const map = (arr, callback) => {
  * @returns {array} new array, with each value doubled e.g. [2, 5, 10]
  */
 const doubleValues = arr => {
-  let newArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    newArr.push(arr[i] * 2);
-  }
+  let newArr = arr.map(value => value * 2);
   return newArr;
 };
 
@@ -293,7 +290,15 @@ const extractKey = (arr, key) => {
  * @param {function} callback
  * @returns {mixed} a array of values with the values with some of the values removed
  */
-const filter = (arr, callback) => {};
+const filter = (arr, callback) => {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (callback(arr[i], i, arr)) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+};
 
 /**
  * Delete the matching user from an array of user objects
@@ -314,7 +319,11 @@ const filter = (arr, callback) => {};
  * findUser(users, 1025);
  * // [{ id: 1024, username:"smile134", email: "smile134@example.com" }]
  */
-const deleteUser = (arr, id) => {};
+const deleteUser = (arr, id) => {
+  return filter(arr, obj => {
+    return obj.id !== id;
+  });
+};
 
 /**
  * Build your own find function
@@ -323,7 +332,13 @@ const deleteUser = (arr, id) => {};
  * @param {function} callback
  * @returns {mixed} a single value in the array
  */
-const find = (arr, callback) => {};
+const find = (arr, callback) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (callback(arr[i], i, arr)) {
+      return arr[i];
+    }
+  }
+};
 
 /**
  * Find and return the matching user in an array of user objects
@@ -344,7 +359,11 @@ const find = (arr, callback) => {};
  * findUser(users, 1025);
  * // { id: 1025, username:"newyorkfarmer", email: "johndoe@example.com" }
  */
-const findUser = (arr, id) => {};
+const findUser = (arr, id) => {
+  return filter(arr, obj => {
+    return obj.id === id;
+  });
+};
 
 /**
  * Given an array of numbers, return the sum
