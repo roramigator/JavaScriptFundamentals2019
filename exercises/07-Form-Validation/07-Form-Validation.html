@@ -8,7 +8,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <!-- Title Page-->
+    <!-- Title Page--> 
     <title>Albany Can Code Registration</title>
 
     <!-- Main CSS-->
@@ -16,91 +16,133 @@
   </head>
 
   <body>
+    <!---------------------------------------------------------->
+    <div class="response" style="visibility: hidden;" data-response>
+        <div class="l-col-right ticket-wrap" aria-label="A fake boat ticket demonstrating mixing font weights and widths">
+            <div class="ticket" aria-hidden="true">
+              <div class="ticket__header">
+                <!--div class="ticket__co"-->
+                  <span class="ticket__co-name">NYC Tour</span>
+                <!--/div-->
+              </div>
+              <div class="ticket__body">
+                <p class="ticket__route" data-names></p>
+                <div class="ticket__timing">
+                  <p>
+                    <span class="u-upper ticket__small-label">Birthday</span>
+                    <span class="ticket__detail" data-birthdays></span>
+                  </p>
+                  <p>
+                    <span class="u-upper ticket__small-label">Gender</span>
+                    <span class="ticket__detail" data-genders></span>
+                  </p>
+                  <p>
+                    <span class="u-upper ticket__small-label">Guest</span>
+                    <span class="ticket__detail" data-guestcounts></span>
+                  </p>
+                </div>
+                <p class="ticket__fine-print">Thank You!</p>
+                <p class="u-upper ticket__admit" data-registrations></p>
+                <img class="ticket__barcode" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/515428/barcode.png" alt="Fake barcode" />
+              </div>
+            </div>
+          </div>
+    </div>
+    
+    <!---------------------------------------------------------->
     <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
       <div class="wrapper wrapper--w680">
         <div class="card card-1">
           <div class="card-heading"></div>
           <div class="card-body">
             <h2 class="title">Sign Up For NYC Tour</h2>
-            <form
-              method="POST"
-              onsubmit="return formValidation()"
-              name="form"
-              id="form"
-            >
-              <div class="input-group">
-                <input
-                  class="input--style-1"
-                  type="text"
-                  placeholder="NAME"
-                  name="customerName"
-                  id="name"
-                />
-              </div>
-              <div class="row row-space">
-                <div class="col-2">
-                  <div class="input-group">
-                    <input
-                      class="input--style-1"
-                      type="text"
-                      placeholder="BIRTHDATE"
-                      name="birthday"
-                      id="birthday"
-                    />
-                    <i
-                      class="zmdi zmdi-calendar-note input-icon js-btn-calendar"
-                    ></i>
-                  </div>
+            <div id="box">  
+              <form
+                method="POST"
+                name="form"
+                id="form"
+              >
+                <span class="info" data-name>Name is required</span>
+                <div class="input-group">
+                  <input
+                    class="input--style-1"
+                    type="text"
+                    placeholder="Name"
+                    name="customerName"
+                    id="name"
+                  />
                 </div>
-                <div class="col-2">
-                  <div class="input-group">
-                    <div class="rs-select2 js-select-simple select--no-search">
-                      <select name="gender" id="gender">
-                        <option disabled="disabled" selected="selected"
-                          >GENDER</option
-                        >
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
-                      </select>
-                      <div class="select-dropdown"></div>
+                <div class="row row-space">
+                  <div class="col-2">
+                      <span class="info" data-birthday>Birthday is required</span>
+                    <div class="input-group">
+                      <input
+                        class="input--style-1"
+                        type="text"
+                        placeholder="Birth Date"
+                        name="birthday"
+                        id="birthday"
+                      />
+                      <i
+                        class="zmdi zmdi-calendar-note input-icon js-btn-calendar"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <span class="info" data-gender>Gender is required</span>
+                    <div class="input-group">
+                      <div class="rs-select2 js-select-simple select--no-search">
+                        <select name="gender" id="gender" class="select--style-1">
+                          <option disabled="disabled" selected="selected"
+                            >Gender</option
+                          >
+                          <option>Male</option>
+                          <option>Female</option>
+                          <option>Other</option>
+                        </select>
+                        <div class="select-dropdown"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="input-group">
-                <div class="rs-select2 js-select-simple select--no-search">
-                  <select name="class" id="guestcount">
-                    <option disabled="disabled" selected="selected"
-                      >How many Guest</option
-                    >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                  </select>
-                  <div class="select-dropdown"></div>
-                </div>
-              </div>
-              <div class="row row-space">
-                <div class="col-2">
-                  <div class="input-group">
-                    <input
-                      class="input--style-1"
-                      type="text"
-                      placeholder="REGISTRATION CODE"
-                      name="res_code"
-                      id="registration"
-                    />
+                <span class="info" data-guestcount>Amount of guest is required</span>
+                <div class="input-group">
+                  <div class="rs-select2 js-select-simple select--no-search">
+                    <select name="class" id="guestcount" class="select--style-1">
+                      <option disabled="disabled" selected="selected"
+                        >How many Guest</option
+                      >
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                    <div class="select-dropdown"></div>
                   </div>
                 </div>
-              </div>
-              <div class="p-t-20">
-                <button class="btn btn--radius btn--green" type="submit">
-                  Submit
-                </button>
-              </div>
-            </form>
-            <div id="box"></div>
+                <div class="row row-space">
+                  <div class="col-2">
+                      <span class="info" data-registration>Code is required</span>
+                    <div class="input-group">
+                      <input
+                        class="input--style-1"
+                        type="text"
+                        placeholder="Registration Code"
+                        name="res_code"
+                        id="registration"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="p-t-20">
+                  <button class="btn btn--radius btn--green" type="submit">
+                    Submit
+                  </button>
+                  <button class="btn btn--radius btn--gray" type="button" data-clear>
+                    Clear
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
