@@ -83,6 +83,19 @@ validateForm().then(inputs => inputsArray = inputs );
 
 formData.addEventListener("submit", e => {
     e.preventDefault();
+    inputsArray.forEach(check => {
+        if(check.options){
+            if(check.selectedIndex === 0){
+                check.classList.remove(check.classList.value);
+                check.classList.add("error");
+            }
+        }else{
+            if(check.value === ""){
+                check.classList.remove(check.classList.value);
+                check.classList.add("error");
+            }
+        }
+    });
     const data = inputsArray.reduce((userInfo, input)=>{
         if(input.classList.value === 'success') userInfo.push(input);
         return userInfo;
