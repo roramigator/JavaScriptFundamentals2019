@@ -83,6 +83,7 @@ validateForm().then(inputs => inputsArray = inputs );
 
 formData.addEventListener("submit", e => {
     e.preventDefault();
+    console.log(inputsArray);
     inputsArray.forEach(check => {
         if(check.options){
             if(check.selectedIndex === 0){
@@ -100,7 +101,6 @@ formData.addEventListener("submit", e => {
         if(input.classList.value === 'success') userInfo.push(input);
         return userInfo;
     },[]);
-
     if(data.length === 5){
        data.forEach(element => {
            document.querySelector(`[data-${element.getAttribute("id")}s]`).textContent = element.value;
@@ -111,5 +111,7 @@ formData.addEventListener("submit", e => {
            response.style.visibility = "hidden";
            clearForm();
        });
-    }
+    }/*else{
+        displayError(data);
+    }*/
 });
