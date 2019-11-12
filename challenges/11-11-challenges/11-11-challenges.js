@@ -12,7 +12,15 @@
  * BONUS: Clicking on the button should toggle instead of just show the comments.
  * If the comments are open, change the button text from "View Comments" to "Hide Comments".
  */
-
+document.querySelector("[data-btn]").addEventListener("click", e => {
+    if(e.target.textContent === "View Comments"){
+        e.target.textContent = "Hide Comments";
+        document.querySelector("[data-comment]").classList.remove("hidden");
+    }else{
+        e.target.textContent = "View Comments";
+        document.querySelector("[data-comment]").classList.add("hidden");
+    }
+ });
 /**
  * Challenge 2: Display the results of the world's most pointless search engine.
  *
@@ -25,7 +33,14 @@
  * The exercise must be completed with a form handler
  * and you must prevent the page from refreshing when the form is submitted.
  */
-
+document.querySelector("#form").addEventListener("submit", e => {
+    e.preventDefault();
+    const searchValue = document.querySelector("#search").value;
+    const resultValue = document.querySelector("[data-result]");
+    searchValue
+        ? resultValue.textContent = `No results for '${searchValue}' found.`
+        : resultValue.textContent = 'Type something';
+});
 /**
  * Challenge 3: Adding pagination to the student table.
  *
@@ -36,3 +51,15 @@
  * - Clicking on the "«" and "1" buttons should show everything in data-group="1" and hide everything in data-group="2".
  * - Clicking on the "2" and "»" buttons should show everything in data-group="2" and hide everything in data-group="1".
  */
+document.querySelectorAll('[data-group="2"]').forEach(item => item.classList.add("hidden"));
+const btns = document.querySelectorAll("[data-change]");
+
+btns.forEach(btn => {
+   btn.addEventListener("click", e => {
+       const show = e.target.getAttribute("data-change");
+       const hide = show === "1" ? "2" : "1";        
+       document.querySelector(`[data-group="${show}"]`).classList.remove("hidden");
+       document.querySelector(`[data-group="${hide}"]`).classList.add("hidden");
+   });
+});
+

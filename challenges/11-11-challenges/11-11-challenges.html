@@ -33,10 +33,10 @@
       <p>Highway I-87 is now closed.</p>
 
       <!-- This is the button that will toggle the comments -->
-      <p><button class="btn btn-secondary">View Comments</button></p>
+      <p><button data-btn class="btn btn-secondary">View Comments</button></p>
 
       <!-- This is the comment section you need to toggle -->
-      <div class="card card-body hidden">
+      <div data-comment class="card card-body hidden">
         <div class="media">
           <img src="https://s3.amazonaws.com/uifaces/faces/twitter/vivekprvr/128.jpg" alt="" width="60" height="60"
             class="mr-3">
@@ -54,9 +54,9 @@
     <div class="container">
 
       <!-- Handle this form -->
-      <form class="form-group">
+      <form class="form-group" id="form">
         <div class="input-group">
-          <input type="search" placeholder="Search for oceans near Albany, NY"
+          <input id="search" type="search" placeholder="Search for oceans near Albany, NY"
             aria-label="Search for oceans near Albany, NY" class="form-control">
           <div class="input-group-append">
             <button class="btn btn-success" type="submit">Search</button>
@@ -65,7 +65,7 @@
       </form>
 
       <!-- Display "No results for ___ found" inside of this <p></p> -->
-      <p class="text-white"></p>
+      <p data-result class="text-white"></p>
     </div>
   </section>
 
@@ -185,21 +185,21 @@
       <ul class="pagination">
         <li class="page-item">
           <!-- When this is clicked, it should SHOW data-group="1" and hide data-group="2" -->
-          <button class="page-link" type="button" aria-label="Previous">
+          <button data-change="1" class="page-link" type="button" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </button>
         </li>
         <li class="page-item">
           <!-- When this is clicked, it should SHOW data-group="1" and hide data-group="2" -->
-          <button class="page-link" type="button">1</button>
+          <button data-change="1" class="page-link" type="button">1</button>
         </li>
         <li class="page-item">
           <!-- When this is clicked, it should SHOW data-group="2" and hide data-group="1" -->
-          <button class="page-link" type="button">2</button>
+          <button data-change="2" class="page-link" type="button">2</button>
         </li>
         <li class="page-item">
           <!-- When this is clicked, it should SHOW data-group="2" and hide data-group="1" -->
-          <button class="page-link" type="button" aria-label="Next">
+          <button data-change="2" class="page-link" type="button" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </button>
         </li>
