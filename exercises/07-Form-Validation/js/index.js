@@ -83,7 +83,6 @@ validateForm().then(inputs => inputsArray = inputs );
 
 formData.addEventListener("submit", e => {
     e.preventDefault();
-    console.log(inputsArray);
     inputsArray.forEach(check => {
         if(check.options){
             if(check.selectedIndex === 0){
