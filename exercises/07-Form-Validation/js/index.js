@@ -106,11 +106,11 @@ formData.addEventListener("submit", e => {
         setTimeout(()=>{
             formData.style.visibility = 'visible';
         },2000);
-        //menaceLabel(response);
-        response.style.visibility = "visible";
-        response.addEventListener("click", () => {
-            response.style.visibility = "hidden";
-            clearForm();
-        });
+        menaceLabel(response);
+        // response.style.visibility = "visible";
+        // response.addEventListener("click", () => {
+        //     response.style.visibility = "hidden";
+        //     clearForm();
+        // });
     }
 });
