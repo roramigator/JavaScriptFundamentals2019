@@ -72,8 +72,7 @@ const validateForm = () => {
                 inputs.push(document.querySelector(`[id="${id}"]`));
                 return inputs;
             },[]);
-            accept(data);
-            reject();
+            data ? accept(data) : reject();
         },50);
     });
 };
@@ -84,15 +83,25 @@ validateForm().then(inputs => inputsArray = inputs );
 formData.addEventListener("submit", e => {
     e.preventDefault();
     inputsArray.forEach(check => {
+        const id = check.getAttribute('id');
+        const info = document.querySelector(`[data-${id}]`);
         if(check.options){
             if(check.selectedIndex === 0){
                 check.classList.remove(check.classList.value);
                 check.classList.add("error");
+                info.style.visibility = 'visible';
+                setTimeout(()=>{
+                    info.style.visibility = 'hidden';
+                },2000);
             }
         }else{
             if(check.value === ""){
                 check.classList.remove(check.classList.value);
                 check.classList.add("error");
+                info.style.visibility = 'visible';
+                setTimeout(()=>{
+                    info.style.visibility = 'hidden';
+                },2000);
             }
         }
     });
