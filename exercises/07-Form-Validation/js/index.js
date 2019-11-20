@@ -42,6 +42,13 @@ document.querySelector("[data-clear]").addEventListener("click", () => {
     clearForm();
 });
 
+const menaceLabel = info => {
+    info.style.visibility = 'visible';
+    setTimeout(()=>{
+        info.style.visibility = 'hidden';
+    },2000);
+};
+
 const validateForm = () => {
     return new Promise((accept, reject) => {
         setTimeout(()=>{
@@ -57,10 +64,7 @@ const validateForm = () => {
                         if(e.target.value == "" || e.target.selectedIndex == 0){
                             e.target.classList.remove(e.target.classList.value);
                             e.target.classList.add("error");
-                            info.style.visibility = 'visible';
-                            setTimeout(()=>{
-                                info.style.visibility = 'hidden';
-                            },2000);
+                            menaceLabel(info);
                         }else{
                             e.target.classList.remove(e.target.classList.value);
                             e.target.classList.add("success");
@@ -85,24 +89,10 @@ formData.addEventListener("submit", e => {
     inputsArray.forEach(check => {
         const id = check.getAttribute('id');
         const info = document.querySelector(`[data-${id}]`);
-        if(check.options){
-            if(check.selectedIndex === 0){
-                check.classList.remove(check.classList.value);
-                check.classList.add("error");
-                info.style.visibility = 'visible';
-                setTimeout(()=>{
-                    info.style.visibility = 'hidden';
-                },2000);
-            }
-        }else{
-            if(check.value === ""){
-                check.classList.remove(check.classList.value);
-                check.classList.add("error");
-                info.style.visibility = 'visible';
-                setTimeout(()=>{
-                    info.style.visibility = 'hidden';
-                },2000);
-            }
+        if(check.selectedIndex === 0 || check.value === ""){
+            check.classList.remove(check.classList.value);
+            check.classList.add("error");
+            menaceLabel(info);
         }
     });
     const data = inputsArray.reduce((userInfo, input)=>{
@@ -110,16 +100,12 @@ formData.addEventListener("submit", e => {
         return userInfo;
     },[]);
     if(data.length === 5){
-       data.forEach(element => {
-           document.querySelector(`[data-${element.getAttribute("id")}s]`).textContent = element.value;
-       });
+       data.forEach(element => document.querySelector(`[data-${element.getAttribute("id")}s]`).textContent = element.value);
        const response = document.querySelector("[data-response]");
        response.style.visibility = "visible";
        response.addEventListener("click", () => {
            response.style.visibility = "hidden";
            clearForm();
        });
-    }/*else{
-        displayError(data);
-    }*/
+    }
 });
