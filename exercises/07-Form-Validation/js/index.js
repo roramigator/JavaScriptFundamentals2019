@@ -100,12 +100,17 @@ formData.addEventListener("submit", e => {
         return userInfo;
     },[]);
     if(data.length === 5){
-       data.forEach(element => document.querySelector(`[data-${element.getAttribute("id")}s]`).textContent = element.value);
-       const response = document.querySelector("[data-response]");
-       response.style.visibility = "visible";
-       response.addEventListener("click", () => {
-           response.style.visibility = "hidden";
-           clearForm();
-       });
+        data.forEach(element => document.querySelector(`[data-${element.getAttribute("id")}s]`).textContent = element.value);
+        const response = document.querySelector("[data-response]");
+        formData.style.visibility = 'hidden';
+        setTimeout(()=>{
+            formData.style.visibility = 'visible';
+        },2000);
+        //menaceLabel(response);
+        response.style.visibility = "visible";
+        response.addEventListener("click", () => {
+            response.style.visibility = "hidden";
+            clearForm();
+        });
     }
 });
