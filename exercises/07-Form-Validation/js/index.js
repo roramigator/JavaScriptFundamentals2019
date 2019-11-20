@@ -105,7 +105,7 @@ formData.addEventListener("submit", e => {
         formData.style.visibility = 'hidden';
         setTimeout(()=>{
             formData.style.visibility = 'visible';
-        },2000);
+        },2000); 
         menaceLabel(response);
         // response.style.visibility = "visible";
         // response.addEventListener("click", () => {
