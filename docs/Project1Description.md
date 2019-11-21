@@ -103,7 +103,7 @@ You will either be given a passing or failing grade. You must meet all of the fo
 
 ### Quality Requirements
 
-While you will not fail if you do not meet these quality requirements, we will ask you to resubmit your work if it is not up to a professional standard. One of the goals of this project is to help you build a portfolio. Just like an interviewer will judge you on your attire, employers will job you on the neatness of your code.
+While you will not fail if you do not meet these quality requirements, we will ask you to resubmit your work if it is not up to a professional standard. One of the goals of this project is to help you build a portfolio. Just like an interviewer will judge you on your attire, employers will judge you on the neatness of your code.
 
 - You should have a README.md written in Markdown. It should explain what your project is and how to start, stop and play the game.
 - You must not leave any debugging statements in your code. This means when you commit your code, remove any `console.log` statements that are not intended for the user to see.
@@ -124,7 +124,7 @@ const wordBank = ["win"];
 
 - I completed this project with a _while_ loop.
 - You can pick a random word with _Math.random_.
-- Here is one way that you can test and see if a str contains only letters:
+- Here is one way that you can test and see if a string contains only letters:
 
 ```javascript
 if (/[a-zA-Z]/.test(userInput)) {

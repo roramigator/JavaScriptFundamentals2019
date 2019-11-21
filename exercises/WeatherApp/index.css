@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #a3ccfd;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Josefin Sans", sans-serif;
+  height: 100vh;
+}
+
+body {
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+h1 {
+  color: #fdfdfd;
+  font-family: Pacifico;
+  font-size: 4em;
+  font-weight: normal;
+  line-height: 1em;
+  margin: 0;
+  text-shadow: 0.25rem 0.25rem 0 rgba(#000000, 0.75);
+}
+
+#main {
+  background: rgba(0, 51, 102, 0.5);
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 1.5em 2em 0.5em;
+  text-align: center;
+  box-shadow: 0.25em 0.25em 0 black;
+  border: 0.25em solid white;
+  border-radius: 0.5rem;
+}
+
+#quick-view {
+  color: white;
+  font-size: 3em;
+  font-size: calc(1em + 8vw);
+  margin: 0.4em 0 0.2em 0;
+  text-shadow: 0.25rem 0.25rem 0 rgba(#000000, 0.75);
+}
+
+#quick-view div {
+  display: inline;
+}
+
+#grid {
+  margin: 0.5em 0;
+}
+
+#grid div {
+  background: white;
+  border-radius: 0.75em;
+  box-shadow: 0.25rem 0.25rem 0 rgba(#000000, 0.75);
+  color: black;
+  display: inline-block;
+  letter-spacing: 0.1em;
+  margin: 0.5em 0.4em;
+  overflow: hidden;
+  padding: 1.2rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+button {
+  bottom: 0;
+  background-color: rgba(250, 250, 255, 0.4);
+  border: none;
+  padding: 1em;
+  right: 0;
+}
