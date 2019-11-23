@@ -12,13 +12,12 @@
  *
  *
  */
+// time/date-------------------------------------------------------
 const getDate = d => {
    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-   
+   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];   
    return `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
 };
-
 function setTime() {
    let today = new Date();
    let hours = today.getHours();
@@ -34,50 +33,51 @@ function setTime() {
    setTimeout(function() {
      setTime()
    }, 500);
- }
- setTime();
-
+}
+setTime();
+// ------------------------------------------------------------------
 
  const getWeather = async url => {
-    return await axios.get(url);
+    return await axios.get(url); // get weather data from API
  };
 
  const getCountryData = async (country) => {
-   const data = await axios.get("https://roramigator.dev/api/master.php");
-   const cityData = [...data.data].reduce((acc, val)=>{
-     if(val.country === country) acc.push(val);
-     return acc;
+   const api = await axios.get("https://roramigator.dev/api/master.php");
+   const countryData = [...api.data].reduce((cities, city)=>{
+     if(city.country === country) cities.push(city);
+     return cities;
    },[]);
-   return cityData;
+   return countryData; // returns cities base on given 'country'
  };
 
  const getUserData = async () => {
    const userData = await axios.get("https://ipapi.co/json/");
    const latitude = userData.data.latitude;
    const longitude = userData.data.longitude;
-   return {
+   return { // returns position of user
       latitude: latitude,
       longitude: longitude
    }
  };
+// so far, so good ---------------------------------------------------------------------------------------------
 
- //this is probably not the best practice
- const setCityList = (data) => {
-   return new Promise((good, evil)=>{
+ //this is probably not the best practice////////////////////////////////////////////////////////////////////
+ const setCityList = (data) => { // loads a list of cities
+   //return new Promise((good, evil)=>{
       const cityList = document.querySelector("#cityList");
       data.forEach(city => {
          const li = document.createElement("li");
          li.textContent = city.name;
          li.setAttribute("data-id", city.id);
          cityList.appendChild(li);
-         li.addEventListener("click", e=>{
-            const id = e.target.getAttribute("data-id");
-            id ? good(id) : evil();
-         });
+         // li.addEventListener("click", e=>{
+         //    const id = e.target.getAttribute("data-id");
+         //    id ? good(id) : evil();
+         // });
       });
-   });
+   //});
  };
-
+////////search functionallity for input/////////////////////////////////////////////////////////////////////
  const loadCityList = () => {
    const input = document.querySelector("[data-city]");
    const letter = input.value.toUpperCase();
@@ -89,32 +89,28 @@ function setTime() {
          : e.style.display = "none";
    });
  };
- 
- document.querySelector("[data-city]").addEventListener("keyup", loadCityList)
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- document.querySelector(".octicon-globe").addEventListener("click", () =>{
-   document.querySelector(".magic").classList.toggle("open");
-   document.querySelector("#city").classList.toggle("visible");
- });
 
  const setWeather = async () => {
+    // testing ----------------------------------------------
     let api = "";
     const usData = await getCountryData("US");
     const user = await getUserData();
-    // this is wrong...
-    await setCityList(usData)
-      .then(res => {
-         api = `https://api.openweathermap.org/data/2.5/weather?id=${res}&units=imperial&appid=886705b4c1182eb1c69f28eb8c520e20`;
-      })
-      .catch(()=>{
-         api = `http://api.openweathermap.org/data/2.5/weather?lat=${user.latitude}&lon=${user.longitude}&units=imperial&appid=886705b4c1182eb1c69f28eb8c520e20`;
-      });
-        
-    
-    // units=imperial=F; units=metric=C
-    
+   
+   setCityList(usData);
 
-    const weatherData = await getWeather(api);
+   document.querySelector("[data-city]").addEventListener("keyup", loadCityList);
+   document.querySelector(".octicon-globe").addEventListener("click", () =>{
+      document.querySelector(".magic").classList.toggle("open");
+      document.querySelector("#city").classList.toggle("visible");
+   });
+    
+   api = `http://api.openweathermap.org/data/2.5/weather?lat=${user.latitude}&lon=${user.longitude}&units=imperial&appid=886705b4c1182eb1c69f28eb8c520e20`;
+   //units=imperial=F; units=metric=C
+   //---------------------------------------------------------- 
+
+    const weatherData = await getWeather(api); // setWeather(weatherData)? get link outsite this function so it can be manipulated
 
     const name = weatherData.data.name;
     const temp = weatherData.data.main.temp;
@@ -140,11 +136,15 @@ function setTime() {
  const getBg = (i,day) => {
    const status = i[i.length-1];
    if(status === "n") return "data-night"
+   let res = "";
    if(status === "d"){
-      day === "Clear" ? "data-clear" : "data-clouds";
+      day === "Clear" ? res="data-clear" : res="data-clouds";
    }
+   return res;
  };
-
+// make a function that just prints weather info setWeather('data') using the same div to load
+// so when you cllick in a city just call this function to print it... data has to had all the weather data necesary already
+// so it doesn't need to make no requests just print
  setWeather().then(res=>{
    const temp = Math.floor(res.temp);
    let bg = getBg(res.icon.i, res.weather.main);
