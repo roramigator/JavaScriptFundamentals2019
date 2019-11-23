@@ -7,44 +7,34 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: "Josefin Sans", sans-serif;
   height: 100vh;
 }
 
 body {
+  font-family: 'Fredoka One', cursive;
   align-items: center;
-
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-}
-
-h1 {
-  color: #fdfdfd;
-  font-family: Pacifico;
-  font-size: 4em;
-  font-weight: normal;
-  line-height: 1em;
-  margin: 0;
-  text-shadow: 0.25rem 0.25rem 0 rgba(#000000, 0.75);
+  background: linear-gradient(to bottom, #bbded6 46%, #61c0bf 46%) fixed;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 #main {
-  background: rgba(0, 51, 102, 0.5);
+  background: rgba(98, 192, 191, 0.2);
   margin: 0 auto;
   max-width: 100%;
   padding: 1.5em 2em 0.5em;
   text-align: center;
-  box-shadow: 0.25em 0.25em 0 black;
-  border: 0.25em solid white;
-  border-radius: 0.5rem;
+  box-shadow: 0 0 1.8em -1.5em rgba(0,0,0, 0.5);
+  border-radius: 2.5em;
 }
 
 #quick-view {
   color: white;
-  font-size: 3em;
-  font-size: calc(1em + 8vw);
+  font-size: 10em;
   margin: 0.4em 0 0.2em 0;
   text-shadow: 0.25rem 0.25rem 0 rgba(#000000, 0.75);
 }
@@ -58,7 +48,7 @@ h1 {
 }
 
 #grid div {
-  background: white;
+  /*background: white;*/
   border-radius: 0.75em;
   box-shadow: 0.25rem 0.25rem 0 rgba(#000000, 0.75);
   color: black;
@@ -71,10 +61,206 @@ h1 {
   white-space: nowrap;
 }
 
-button {
-  bottom: 0;
-  background-color: rgba(250, 250, 255, 0.4);
+/**
+* LOADER
+*/
+.circle {
+  width: 10px ;
+  height: 10px ;
+  border-radius: 10px ;
+  animation: wave 0.5s ease-in-out infinite ;
+}
+
+@keyframes wave {
+  30% {
+    background-color: rgba(250, 227, 217,0) ;
+  }
+  0% , 60% , 100% {
+    background-color: rgba(250, 227, 217,0.7) ;
+  }
+}
+
+/**
+* MORE
+*/
+/* .location {
+  transform: rotate(-90deg);
+  position: absolute;
+  left: 15em;
+} */
+
+[data-clear] {
+  background-image: url("https://cdn.dribbble.com/users/648922/screenshots/6887377/attachments/1466541/2_sunny_1125_2436_wallpaper.jpg");
+}
+[data-clouds] {
+  background-image: url("https://cdn.dribbble.com/users/648922/screenshots/6887377/attachments/1466540/1_cloudy_1125_2436_wallpaper.jpg");
+}
+[data-night] {
+  background-image: url("https://cdn.dribbble.com/users/648922/screenshots/6887377/attachments/1466542/3_night_1125_2436_wallpaper.jpg");
+}
+
+#weather span {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 0.3em;
   border: none;
+  box-shadow: 0 0.1em 0.2em rgba(0,0,0,0.2);
+  text-shadow: 0 0 0.1em rgba(0,0,0,0.2);
+  transition: all ease-in-out 1s;
+  z-index: 9;
+}
+#weather span:hover{
+  cursor: pointer;
+  background-position: top;
+  transform: scale(1.4);
+  box-shadow: 0 0.3em 0.3em rgba(0,0,0,0.2);
+}
+
+.card .info {
+  font-size: 0.2em;
+}
+
+.top {
+  color: #f8f8f8;
+  font-size: 2em;
+}
+.date {
+  display: block;
+  font-size: 0.5em;
+}
+
+#weather span {
+  text-indent: -0.2em;
+  padding: 0 0.3em;
+}
+#weather p {
+  font-size: 0.2em;
+}
+
+.octicon {
+  font-size: xx-large;
+  color: #f8f8f8;
+}
+.octicon.octicon-globe {
+  position: absolute;
+  top: 1em;
+  right: 1.05em;
+  cursor: pointer;
+  z-index: 10000;
+}
+#globe {
+  transition: all 0.2s ease;
+}
+#globe:hover {
+  transform: scale(1.5);
+}
+#city {
+  position: fixed;
+  top: 25%;
+  right: 17%;
+  box-shadow: 0 0.1em 0.2em rgba(0,0,0,0.2);
+  background-color: #61c0bf;
+  z-index: 999999;
+}
+#city input, select {
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
   padding: 1em;
-  right: 0;
+  overflow: hidden;
+  border: none;
+  color: #f8f8f8;
+  background-color: #61c0bf;
+  font-size: 5em;
+}
+::placeholder {
+  color: #f8f8f8;
+}
+/**
+* cityList
+*/
+
+#cityList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#cityList li {
+  cursor: pointer;
+  border: none;
+  /* margin-top: -1px; Prevent double borders */
+  background-color: #61c0bf;
+  text-decoration: none;
+  font-size: 2em;
+  color: #f8f8f8;
+  display: block
+}
+
+#cityList li:hover {
+  background-color: #357376;
+}
+
+/** */
+.hidden {
+  visibility: hidden;
+}
+.magic {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background-color: #36b5b0;
+  padding: 2em;
+  border-radius: 50%;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+.magic.open {
+  transform: scale(150);
+}
+
+.toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 62px;
+  height: 28px;
+  display: inline-block;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: #bbded6;
+  transition: background-color ease 0.3s;
+}
+
+.toggle:before {
+  content: "c f";
+  display: block;
+  position: absolute;
+  z-index: 2;
+  width: 25px;
+  height: 24px;
+  background: #fff;
+  left: 2px;
+  top: 2px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  text-indent: -23px;
+  word-spacing: 43px;
+  color: #fff;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  transition: all ease-out 0.1s;
+}
+
+/* .toggle:checked {
+  background-color: #fae3d9;
+} */
+
+.toggle:checked:before {
+  left: 35px;
 }

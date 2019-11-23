@@ -1,10 +1,8 @@
 <head>
   <meta charset="utf-8" />
   <title>Weather</title>
-  <link
-    href="https://fonts.googleapis.com/css?family=Kavivanar|Syncopate"
-    rel="stylesheet"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -16,15 +14,29 @@
   <script src="weather.js" defer></script>
 </head>
 
-<div id="main">
-  <h1>Your Weather For Today</h1>
-  <div class="visual-only" aria-hidden="true">
+<body>
+  <div class="menu">  
+    <span class="octicon octicon-globe" id="globe"></span>
+    <div class="magic"></div>
+  </div>
+    <div id="main">
+    <div class="top">
+      <p id="date"></p>
+    </div>
     <div id="quick-view">
-      <div id="weather-icons">
-        <i class="wi">20</i>
-        <i class="wi">F</i>
+      <div id="weather">
+        <div id="grid">
+          <div class="circle"></div>
+        </div>
       </div>
     </div>
-    <button>F / C</button>
+    <input class="toggle" type="checkbox" />
+    <div id="city" class="hidden">
+      <input type="text" placeholder="Write city's name" data-city>
+      <select data-coutry disabled>
+        <option value="us">US</option>
+      </select>
+      <ul id="cityList"></ul>
+    </div>
   </div>
-</div>
+</body>
