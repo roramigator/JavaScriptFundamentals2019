@@ -47,7 +47,7 @@ setTime();
      if(city.country === country) cities.push(city);
      return cities;
    },[]);
-   return countryData; // returns cities base on given 'country'
+   return setCityList(countryData); // returns cities base on given 'country'
  };
 
  const getUserData = async () => {
@@ -75,9 +75,11 @@ setTime();
          //    id ? good(id) : evil();
          // });
       });
+      return cityList;
    //});
  };
-////////search functionallity for input/////////////////////////////////////////////////////////////////////
+
+ ////////search functionallity for input/////////////////////////////////////////////////////////////////////
  const loadCityList = () => {
    const input = document.querySelector("[data-city]");
    const letter = input.value.toUpperCase();
@@ -89,51 +91,20 @@ setTime();
          : e.style.display = "none";
    });
  };
- //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const filterData = weatherData => {
+   return {
+      id: weatherData.data.id,
+      name: weatherData.data.name,
+      temp: weatherData.data.main.temp,
+      tempMin: weatherData.data.main.temp_min,
+      tempMax: weatherData.data.main.temp_max,
+      weather: { main: weatherData.data.weather[0].main, description: weatherData.data.weather[0].description },
+      icon: {url: `http://openweathermap.org/img/wn/${weatherData.data.weather[0].icon}@2x.png`, i: weatherData.data.weather[0].icon},
+   }
+};
 
- const setWeather = async () => {
-    // testing ----------------------------------------------
-    let api = "";
-    const usData = await getCountryData("US");
-    const user = await getUserData();
-   
-   setCityList(usData);
-
-   document.querySelector("[data-city]").addEventListener("keyup", loadCityList);
-   document.querySelector(".octicon-globe").addEventListener("click", () =>{
-      document.querySelector(".magic").classList.toggle("open");
-      document.querySelector("#city").classList.toggle("visible");
-   });
-    
-   api = `http://api.openweathermap.org/data/2.5/weather?lat=${user.latitude}&lon=${user.longitude}&units=imperial&appid=886705b4c1182eb1c69f28eb8c520e20`;
-   //units=imperial=F; units=metric=C
-   //---------------------------------------------------------- 
-
-    const weatherData = await getWeather(api); // setWeather(weatherData)? get link outsite this function so it can be manipulated
-
-    const name = weatherData.data.name;
-    const temp = weatherData.data.main.temp;
-    const tempMin = weatherData.data.main.temp_min;
-    const tempMax = weatherData.data.main.temp_max;
-    const main = weatherData.data.weather[0].main;
-    const description = weatherData.data.weather[0].description;
-    const url = `http://openweathermap.org/img/wn/${weatherData.data.weather[0].icon}@2x.png`;
-    const i = weatherData.data.weather[0].icon;
-
-    return {
-       name: name,
-       temp: temp,
-       tempMin: tempMin,
-       tempMax: tempMax,
-       weather: {main, description},
-       icon: {url, i},
-       city: usData
-    };
- };
-
-
- const getBg = (i,day) => {
+const getBg = (i,day) => {
    const status = i[i.length-1];
    if(status === "n") return "data-night"
    let res = "";
@@ -141,20 +112,106 @@ setTime();
       day === "Clear" ? res="data-clear" : res="data-clouds";
    }
    return res;
- };
-// make a function that just prints weather info setWeather('data') using the same div to load
-// so when you cllick in a city just call this function to print it... data has to had all the weather data necesary already
-// so it doesn't need to make no requests just print
- setWeather().then(res=>{
-   const temp = Math.floor(res.temp);
-   let bg = getBg(res.icon.i, res.weather.main);
-   const data = `
-      <h1>${res.name}</h1>
+};
+
+const printWeather = (data) =>{
+   const temp = Math.round(data.temp);
+   let bg = getBg(data.icon.i, data.weather.main);
+   const weather = `
+      <h1 data-cityid="${data.id}">${data.name}</h1>
       <span class="card" ${bg}>
-         <i>${temp}°</i>
-         <i class="info"><img class="icon" src="${res.icon.url}">${res.weather.description}</i>
+         <i data-temp>${temp}°</i>
+         <i class="info"><img class="icon" src="${data.icon.url}">${data.weather.description}</i>
       </span>
    `;
-   document.querySelector("#weather").innerHTML = data;
-   console.log(res);
- });
+   document.querySelector("#weather").innerHTML = weather;
+};
+
+const setWeather = async data => {
+   const cityList = await getCountryData("US");
+   if(data){
+      return filterData(data);
+   }else {
+      const user = await getUserData();    
+      //const api = `http://api.openweathermap.org/data/2.5/weather?lat=${user.latitude}&lon=${user.longitude}&units=imperial&appid=886705b4c1182eb1c69f28eb8c520e20`;
+      const api = buildUrl(user);
+      return {weatherData:filterData(await getWeather(api)), cityList: cityList.children};
+   }
+};
+
+const buildUrl = (user, id) => {
+   const units = document.querySelector(".toggle").checked ? "metric" : "imperial";
+   const url = user
+      ? `http://api.openweathermap.org/data/2.5/weather?lat=${user.latitude}&lon=${user.longitude}&units=${units}&appid=886705b4c1182eb1c69f28eb8c520e20` 
+      : `http://api.openweathermap.org/data/2.5/weather?id=${id}&units=${units}&appid=886705b4c1182eb1c69f28eb8c520e20`;
+   return url;
+}
+
+setWeather().then(res=> {   
+   printWeather(res.weatherData);
+   const lis = [...res.cityList];
+
+   lis.forEach(city => {
+      city.addEventListener("click", e => {
+         cityId = city.getAttribute("data-id");
+         const load = `
+            <div id="grid">
+               <div class="circle"></div>
+            </div>
+         `;
+
+         document.querySelector("#weather").innerHTML = load;
+         document.querySelector(".magic").classList.toggle("open");
+         document.querySelector("#city").classList.toggle("visible");
+
+         const id = e.target.getAttribute("data-id");
+         //const api = `http://api.openweathermap.org/data/2.5/weather?id=${id}&units=imperial&appid=886705b4c1182eb1c69f28eb8c520e20`;
+         const api = buildUrl(undefined, id);
+         getWeather(api).then(get=>{
+            setWeather(get).then(set=>{
+               printWeather(set);
+            });
+         });
+      });
+   });
+});
+
+document.querySelector("[data-city]").addEventListener("keyup", loadCityList);
+document.querySelector(".octicon-globe").addEventListener("click", () =>{
+   document.querySelector(".magic").classList.toggle("open");
+   document.querySelector("#city").classList.toggle("visible");
+});
+
+
+document.querySelector(".toggle").addEventListener("click", e =>{
+   // let res = "";
+   // const temp = document.querySelector("[data-temp]").textContent;
+   // const sub = temp.substring(0, temp.length-1);
+   // const number = parseInt(sub ,10);
+   // if(e.target.checked){
+   //    // C = (F − 32) × 5/9
+   //    res = (number-32) * 5/9;
+   // }
+   // else {
+   //    // F = (C × 9/5) + 32
+   //    res = (number * 9/5) + 32;
+   // }
+   // let with2Decimals = res.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+   // document.querySelector("[data-temp]").textContent = with2Decimals+"°";
+   
+
+   const id = document.querySelector("[data-cityid]").getAttribute("data-cityid");
+   const api = buildUrl(undefined, id);
+   getWeather(api).then(get=>{
+      setWeather(get).then(set=>{
+         printWeather(set);
+      });
+   });
+   const load = `
+      <div id="grid">
+         <div class="circle"></div>
+      </div>
+   `;
+
+   document.querySelector("#weather").innerHTML = load;
+});
