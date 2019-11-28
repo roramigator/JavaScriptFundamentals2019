@@ -42,12 +42,13 @@ setTime();
  };
 
  const getCountryData = async (country) => {
-   const api = await axios.get("https://roramigator.dev/api/master.php");
-   const countryData = [...api.data].reduce((cities, city)=>{
-     if(city.country === country) cities.push(city);
-     return cities;
-   },[]);
-   return setCityList(countryData); // returns cities base on given 'country'
+   const api = await axios.get(`https://api.roramigator.dev/country/${country}`);
+   console.log(api);
+   // const countryData = [...api.data].reduce((cities, city)=>{
+   //   if(city.country === country) cities.push(city);
+   //   return cities;
+   // },[]);
+   return setCityList(api); // returns cities base on given 'country'
  };
 
  const getUserData = async () => {
@@ -128,7 +129,7 @@ const printWeather = (data) =>{
 };
 
 const setWeather = async data => {
-   const cityList = await getCountryData("US");
+   const cityList = await getCountryData("us");
    if(data){
       return filterData(data);
    }else {
