@@ -43,12 +43,11 @@ setTime();
 
  const getCountryData = async (country) => {
    const api = await axios.get(`https://api.roramigator.dev/country/${country}`);
-   console.log(api);
    // const countryData = [...api.data].reduce((cities, city)=>{
    //   if(city.country === country) cities.push(city);
    //   return cities;
    // },[]);
-   return setCityList(api); // returns cities base on given 'country'
+   return setCityList(api.data); // returns cities base on given 'country'
  };
 
  const getUserData = async () => {
