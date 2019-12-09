@@ -265,8 +265,10 @@ Thumbs.db
 package-lock.json
 yarn.lock
 
-# generated from exercises / challenges
+# for exercises, challenges and examples
 challenges/10-7-challenges/people-output.csv
+examples/webpack/public/assets/
+examples/webpack/dist/
 
 # misc
 *NOCOMMIT*

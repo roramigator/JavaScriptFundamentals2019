@@ -1,0 +1,7 @@
+/**
+ * In addition to what is already there, I added this class:
+ */
+
+.error {
+  border: 1px solid red;
+}

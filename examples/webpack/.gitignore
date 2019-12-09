@@ -1,0 +1,3 @@
+# I recommend you generate a .gitignore file from https://www.gitignore.io/
+# But at the very least, you will need to ignore this
+node_modules/
