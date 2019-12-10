@@ -9,7 +9,6 @@ const {
 describe("Module Pattern", () => {
   it("should return a list of passing students", () => {
     const passingStudents = TeacherGradeBook.getPassingStudents();
-
     expect(passingStudents).to.be.equalTo([
       { average: 98 },
       { average: 75 },

@@ -21,7 +21,38 @@
 const { studentGrades } = require("../12-Module-Pattern/students");
 
 const TeacherGradeBook = (() => {
-  return {};
+  const pass = 65;
+
+  return {
+    getFailingStudents: () => {
+      let students = [];
+      studentGrades.forEach(student => {
+        const add = student.grades.reduce((grade, val) => {
+          grade = grade + val;
+          return grade;
+        },0);
+        const total = add/6;
+        if(total > pass){
+          students.push({average: Math.floor(total)});
+        }
+      });
+      console.log(students);
+    },
+    getPassingStudents: () => {
+      let students = [];
+      studentGrades.forEach(student => {
+        const add = student.grades.reduce((grade, val) => {
+          grade = grade + val;
+          return grade;
+        },0);
+        const total = add/6;
+        if(total < pass){
+          students.push({average: Math.floor(total)});
+        }
+      });
+      console.log(students);
+    }
+  };
 })();
 
 module.exports = {
