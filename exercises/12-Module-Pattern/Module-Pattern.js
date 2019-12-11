@@ -32,11 +32,11 @@ const TeacherGradeBook = (() => {
           return grade;
         },0);
         const total = add/6;
-        if(total > pass){
-          students.push({average: Math.floor(total)});
+        if(total < pass){
+          students.push({firstName: student.firstName});
         }
       });
-      console.log(students);
+      return students;
     },
     getPassingStudents: () => {
       let students = [];
@@ -46,12 +46,13 @@ const TeacherGradeBook = (() => {
           return grade;
         },0);
         const total = add/6;
-        if(total < pass){
-          students.push({average: Math.floor(total)});
+        if(total > pass){
+          students.push({firstName: student.firstName});
         }
       });
-      console.log(students);
-    }
+      return students;
+    },
+    debug: () => studentGrades
   };
 })();
 
