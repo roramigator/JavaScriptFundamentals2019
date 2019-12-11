@@ -269,6 +269,7 @@ yarn.lock
 challenges/10-7-challenges/people-output.csv
 examples/webpack/public/assets/
 examples/webpack/dist/
+exercises/13-observer-pattern/public/assets/
 
 # misc
 *NOCOMMIT*
